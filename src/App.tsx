@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
+import Dashboard from './components/Dashboard';
+import Tracker from './components/Tracker';
 
 export type OpportunityCategory = 'Internship' | 'Fellowship' | 'Hackathon' | 'Open Source';
 
@@ -231,6 +233,22 @@ function getDeadlineStatus(deadline: string): 'expired' | 'closing-soon' | 'open
 }
 
 function App() {
+  const [view, setView] = useState<'feed' | 'dashboard' | 'tracker'>('feed');
+  const TRACKER_STORAGE = 'careerPilotApplications';
+  const [trackerState, setTrackerState] = useState<Record<string, string>>(() => {
+    try {
+      const raw = localStorage.getItem(TRACKER_STORAGE);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(TRACKER_STORAGE, JSON.stringify(trackerState));
+    } catch {}
+  }, [trackerState]);
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<OpportunityCategory | 'All'>('All');
   const [showBookmarkedOnly, setShowBookmarkedOnly] = useState(false);
@@ -341,6 +359,12 @@ function App() {
         <button className="profile-button" onClick={() => { setShowProfileModal(!showProfileModal); setProfileInput({ skills: userProfile.skills.join(', '), experience: userProfile.experience, interests: userProfile.interests.join(', ') }); }}>
           {userProfile.skills.length > 0 ? '✓ Profile Set' : '+ Add Profile'}
         </button>
+      </div>
+
+      <div className="view-tabs" style={{ marginBottom: 20 }}>
+        <button className={`tab-btn ${view === 'feed' ? 'active' : ''}`} onClick={() => setView('feed')}>Feed</button>
+        <button className={`tab-btn ${view === 'dashboard' ? 'active' : ''}`} onClick={() => setView('dashboard')}>Dashboard</button>
+        <button className={`tab-btn ${view === 'tracker' ? 'active' : ''}`} onClick={() => setView('tracker')}>Tracker</button>
       </div>
 
       {showProfileModal && (
@@ -520,10 +544,11 @@ function App() {
         </div>
       </section>
 
-      <main>
-        <h2 className="section-title">Opportunities</h2>
-        <div className="grid">
-          {filtered.map((opportunity) => {
+      {view === 'feed' && (
+        <main>
+          <h2 className="section-title">Opportunities</h2>
+          <div className="grid">
+            {filtered.map((opportunity) => {
             const isBookmarked = bookmarks.includes(opportunity.id);
             const hasReminder = Boolean(reminders[opportunity.id]);
             const matchScore = calculateMatchScore(opportunity, userProfile);
@@ -583,14 +608,33 @@ function App() {
                 <p className="reminder-text">{buildReminderMessage(opportunity)}</p>
               </article>
             );
-          })}
-          {filtered.length === 0 && (
-            <div className="empty-state">
-              <p>No opportunities match your filters.</p>
-            </div>
-          )}
-        </div>
-      </main>
+            })}
+            {filtered.length === 0 && (
+              <div className="empty-state">
+                <p>No opportunities match your filters.</p>
+              </div>
+            )}
+          </div>
+        </main>
+      )}
+
+      {view === 'dashboard' && (
+        <Dashboard
+          opportunities={sampleOpportunities}
+          bookmarks={bookmarks}
+          reminders={reminders}
+          userProfile={userProfile}
+          calculateMatchScore={calculateMatchScore}
+          getDaysUntil={getDaysUntil}
+          formatRelativeDeadline={formatRelativeDeadline}
+          trackerState={trackerState}
+          onOpenTracker={() => setView('tracker')}
+        />
+      )}
+
+      {view === 'tracker' && (
+        <Tracker opportunities={sampleOpportunities} trackerState={trackerState} setTrackerState={setTrackerState} />
+      )}
     </div>
   );
 }
