@@ -1,14 +1,13 @@
 # Career Pilot Platform MVP
 
-A small React + TypeScript MVP for a unified opportunities feed.
+A lightweight React + TypeScript MVP for discovering and tracking career opportunities in one place.
 
-## Features
+## What it does
 
-- Unified feed across internships, fellowships, hackathons, and open-source programs
-- Search and category filters
-- Remote-only and bookmarked-only filters
-- Bookmark opportunities with local persistence
-- Deadline reminders with reminder toggles and an upcoming reminders panel
+- Aggregates internships, fellowships, hackathons, and open-source programs into a unified feed
+- Supports search, category filtering, and remote-only views
+- Lets users bookmark opportunities with browser-based persistence
+- Displays upcoming deadline reminders and lets users toggle reminders on or off
 
 ## Getting started
 
@@ -16,8 +15,35 @@ A small React + TypeScript MVP for a unified opportunities feed.
    ```bash
    npm install
    ```
-2. Start development server:
+
+### Project dependencies
+
+- `react` ^18.3.1
+- `react-dom` ^18.3.1
+
+### Development dependencies
+
+- `@types/react` ^18.3.4
+- `@types/react-dom` ^18.3.0
+- `@vitejs/plugin-react` ^4.3.1
+- `typescript` ^5.6.2
+- `vite` ^5.4.1
+
+2. Start the development server:
    ```bash
    npm run dev
    ```
-3. Open the app in the browser at the URL shown by Vite.
+3. Open the app in your browser at the URL shown by Vite.
+
+## Project structure
+
+- `src/main.tsx` — application entry point
+- `src/App.tsx` — main app shell
+- `src/components/Dashboard.tsx` — dashboard and feed UI
+- `src/components/Tracker.tsx` — opportunity tracking and reminders
+
+## Scripts
+
+- `npm run dev` — start the Vite development server
+- `npm run build` — build the production bundle
+- `npm run preview` — preview the production build locally
