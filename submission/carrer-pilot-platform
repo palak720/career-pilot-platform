@@ -1,0 +1,78 @@
+Open Source Hackathon 2026 Project Submission
+
+Participant Details
+
+Full Name: PalakKasaudhan
+
+GitHub Username:https://github.com/palak720
+
+Team Name:
+
+College/University:Shoolini University
+
+Project DetailsName: career-pilot-platform
+Stack: React + TypeScript + Vite
+Purpose: MVP for a unified career opportunities feed
+Key features:
+Aggregates internships, fellowships, hackathons, and open-source programs
+Search and category filters
+Remote-only and bookmarked-only filters
+Bookmarking with browser persistence
+Deadline reminders with toggles and upcoming reminders panel
+How to run
+npm install
+npm run dev
+Open the app in the browser at the URL shown by Vite
+Main files
+main.tsx — app entry point
+App.tsx — main app shell
+Dashboard.tsx — dashboard / feed UI
+Tracker.tsx — tracking and reminders UI
+
+Project Title:  career-pilot-platform
+
+
+Project Description:career-pilot-platform is a React + TypeScript MVP built with Vite.
+
+Purpose: provide a unified feed for career opportunities
+Includes:
+internships, fellowships, hackathons, and open-source programs
+search and category filtering
+remote-only and bookmarked-only views
+bookmark persistence in the browser
+deadline reminders with toggle controls and an upcoming reminders panel
+It is designed as a lightweight frontend app for discovering and tracking relevant opportunities in one place.
+
+Tech Stack Used: React + TypeScript 
+
+GitHub Repository Link:https://github.com/palak720/career-pilot-platform
+
+Live Demo Link:
+
+Presentation / Demo Video Link:
+
+Open Source Readiness
+ My project is public on GitHub
+ My repository has a proper README.md
+ I have added setup/installation instructions
+ I have added screenshots/demo where possible
+ I have added a license file
+ My project is original and built/updated during the hackathon period
+Memori Labs Sponsor Task
+Please complete these before submitting:
+
+ I have starred the Memori Labs GitHub repository
+https://github.com/MemoriLabs/Memori
+
+ I have followed Memori Labs on LinkedIn
+https://www.linkedin.com/company/memorilabs/
+
+ I have followed Memori Labs on X
+https://x.com/memorilab
+
+ I have checked Memori Labs social links
+https://linktr.ee/memorilabs
+
+ID Card Verification
+ I have generated my ID card from https://oshack.xyz
+ If my ID was not verified, I completed the mandatory verification/giveaway form and tried again
